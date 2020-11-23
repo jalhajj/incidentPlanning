@@ -22,3 +22,8 @@ select,
 textarea {
     max-width: 280px;
 }
+.dt-button buttons-excel buttons-html5 {
+    color: #fff;
+    background-color: #2780E3;
+    border-color: #2780E3;
+}

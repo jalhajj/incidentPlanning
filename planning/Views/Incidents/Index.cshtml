@@ -1,0 +1,110 @@
+﻿@model IEnumerable<planning.Models.Incident>
+
+@{
+    ViewBag.Title = "Liste des incidents";
+}
+
+
+
+    <button class=".btn-primary">
+        @Html.ActionLink("Add New Incident", "Create")
+    </button>
+
+    <table class="table" id="mytable">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.IncidentNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PlannedFor)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Client)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Priority)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.User)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IncidentNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PlannedFor)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Client)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Priority)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.IncidentId }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.IncidentId }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.IncidentId })
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+
+        </tfoot>
+    </table>
+
+  
+@section scripts
+{
+
+
+
+    <script>
+        var editor;
+        $(document).ready(function () {
+            $('#mytable').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'copyHtml5',
+                        exportOptions: {
+                            columns: [0,1,2,3,4,5,6]
+                        } },
+                    {
+                        extend: 'excelHtml5',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5, 6]
+                        }
+
+                    }
+                ]
+            });
+        });
+
+
+    </script>
+}

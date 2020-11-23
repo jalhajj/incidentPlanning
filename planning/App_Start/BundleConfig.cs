@@ -9,7 +9,13 @@ namespace planning
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/datatables/jquery.datatables.js",
+                        "~/Scripts/datatables/datatables.bootstrap.js",
+                        "~/Scripts/datatables/dataTables.buttons.min.js",
+                        "~/Scripts/datatables/jszip.min.js",
+                        "~/Scripts/datatables/buttons.html5.min.js",
+                        "~/Scripts/datatables/buttons.print.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -24,7 +30,9 @@ namespace planning
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/bootstrap-cosmo.css",
+                      "~/Content/DataTables/css/datatables.bootstrap.css",
+                      "~/Content/DataTables/css/buttons.datatables.min.css",
                       "~/Content/site.css"));
         }
     }

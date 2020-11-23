@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using planning.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace planning.Controllers
 {
@@ -139,7 +140,14 @@ namespace planning.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            if (User.IsInRole("CanManage"))
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Incidents");
+            }
         }
 
         //
@@ -155,6 +163,12 @@ namespace planning.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    // temp code
+                    //var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+                    //var roleManager = new RoleManager<IdentityRole>(roleStore);
+                    //await roleManager.CreateAsync(new IdentityRole("CanManage"));
+
+                   
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
@@ -163,7 +177,7 @@ namespace planning.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Incidents");
                 }
                 AddErrors(result);
             }

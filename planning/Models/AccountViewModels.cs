@@ -50,7 +50,7 @@ namespace planning.Models
     {
         [Required]
         [Display(Name = "Email")]
-        [EmailAddress]
+      
         public string Email { get; set; }
 
         [Required]
@@ -65,8 +65,8 @@ namespace planning.Models
     public class RegisterViewModel
     {
         [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
+      
+        [Display(Name = "User Name")]
         public string Email { get; set; }
 
         [Required]
@@ -85,7 +85,7 @@ namespace planning.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "User Name")]
         public string Email { get; set; }
 
         [Required]

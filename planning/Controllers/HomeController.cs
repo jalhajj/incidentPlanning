@@ -10,7 +10,7 @@ namespace planning.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+           return RedirectToAction("Index", "Incidents");
         }
 
         public ActionResult About()
